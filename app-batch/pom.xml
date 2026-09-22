@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.bpce.lab</groupId>
+    <artifactId>vulnerable-app</artifactId>
+    <version>1.0.0</version>
+  </parent>
+
+  <artifactId>app-batch</artifactId>
+
+  <dependencies>
+
+    <!-- USED : connexion base de donnees. -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.11</version>
+    </dependency>
+
+    <!-- USED + vulnerable, mais montee de version = changement majeur cassant.
+         => scenario RISQUE ACCEPTE (documente) plutot qu'upgrade immediat. -->
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
+      <version>1.4.5</version>
+    </dependency>
+
+    <!-- PRIVATE : artefact interne, absent des registres publics.
+         => ressort dans le bucket "Private" / non identifie par Checkmarx.
+         Non importee dans le code (pas de dependance de compilation). -->
+    <dependency>
+      <groupId>com.bpce.internal</groupId>
+      <artifactId>legacy-crypto</artifactId>
+      <version>1.0.0</version>
+      <optional>true</optional>
+    </dependency>
+
+  </dependencies>
+</project>
